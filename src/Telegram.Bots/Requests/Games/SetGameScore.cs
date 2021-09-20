@@ -5,15 +5,15 @@ using Telegram.Bots.Types;
 
 namespace Telegram.Bots.Requests.Games
 {
-  public abstract record SetGameScoreBase : IRequest<GameMessage>, IUserTargetable
+  public abstract class SetGameScoreBase : IRequest<GameMessage>, IUserTargetable
   {
     public long UserId { get; }
 
     public uint Score { get; }
 
-    public bool? Force { get; init; }
+    public bool? Force { get; set; }
 
-    public bool? DisableEdit { get; init; }
+    public bool? DisableEdit { get; set; }
 
     public string Method { get; } = "setGameScore";
 
@@ -24,7 +24,7 @@ namespace Telegram.Bots.Requests.Games
     }
   }
 
-  public abstract record SetGameScore<TChatId> : SetGameScoreBase, IChatMessageTargetable<TChatId>
+  public abstract class SetGameScore<TChatId> : SetGameScoreBase, IChatMessageTargetable<TChatId>
   {
     public TChatId ChatId { get; }
 
@@ -38,7 +38,7 @@ namespace Telegram.Bots.Requests.Games
     }
   }
 
-  public sealed record SetGameScore : SetGameScore<long>
+  public sealed class SetGameScore : SetGameScore<long>
   {
     public SetGameScore(long chatId, int messageId, long userId, uint score) :
       base(chatId, messageId, userId, score) { }
@@ -46,7 +46,7 @@ namespace Telegram.Bots.Requests.Games
 
   namespace Inline
   {
-    public sealed record SetGameScore : SetGameScoreBase, IInlineMessageTargetable
+    public sealed class SetGameScore : SetGameScoreBase, IInlineMessageTargetable
     {
       public string MessageId { get; }
 

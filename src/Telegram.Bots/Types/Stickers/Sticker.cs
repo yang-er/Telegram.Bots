@@ -3,20 +3,20 @@
 
 namespace Telegram.Bots.Types.Stickers
 {
-  public sealed record Sticker : File
+  public sealed class Sticker : File
   {
-    public int Width { get; init; }
+    public int Width { get; set; }
 
-    public int Height { get; init; }
+    public int Height { get; set; }
 
-    public bool IsAnimated { get; init; }
+    public bool IsAnimated { get; set; }
 
-    public Photo? Thumb { get; init; }
+    public Photo? Thumb { get; set; }
 
-    public string? Emoji { get; init; }
+    public string? Emoji { get; set; }
 
-    public string? SetName { get; init; }
+    public string? SetName { get; set; }
 
-    public MaskPosition? MaskPosition { get; init; }
+    public MaskPosition? MaskPosition { get; set; }
   }
 }

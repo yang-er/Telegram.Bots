@@ -52,7 +52,7 @@ namespace Telegram.Bots.Http
         using var httpResponse = await _client.SendAsync(httpRequest, ResponseHeadersRead, token)
           .ConfigureAwait(false);
 
-        var httpContent = await httpResponse.Content.ReadAsStreamAsync(token).ConfigureAwait(false);
+        var httpContent = await httpResponse.Content.ReadAsStreamAsync().ConfigureAwait(false);
 
         return httpResponse.IsSuccessStatusCode
           ? new(_serializer.Deserialize<Success<T>>(httpContent).Result)
@@ -112,7 +112,7 @@ namespace Telegram.Bots.Http
         using var httpResponse = await _client.SendAsync(httpRequest, ResponseHeadersRead, token)
           .ConfigureAwait(false);
 
-        await using var httpContent = await httpResponse.Content.ReadAsStreamAsync(token)
+        await using var httpContent = await httpResponse.Content.ReadAsStreamAsync()
           .ConfigureAwait(false);
 
         if (!httpResponse.IsSuccessStatusCode)

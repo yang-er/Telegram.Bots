@@ -6,16 +6,16 @@ using Telegram.Bots.Types;
 
 namespace Telegram.Bots.Requests.Admins
 {
-  public abstract record EditChatInviteLink<TChatId> : IRequest<ChatInviteLink>,
+  public abstract class EditChatInviteLink<TChatId> : IRequest<ChatInviteLink>,
     IChatTargetable<TChatId>
   {
     public TChatId ChatId { get; }
 
     public string InviteLink { get; }
 
-    public DateTime? ExpireDate { get; init; }
+    public DateTime? ExpireDate { get; set; }
 
-    public int? MemberLimit { get; init; }
+    public int? MemberLimit { get; set; }
 
     public string Method { get; } = "editChatInviteLink";
 
@@ -26,14 +26,14 @@ namespace Telegram.Bots.Requests.Admins
     }
   }
 
-  public sealed record EditChatInviteLink : EditChatInviteLink<long>
+  public sealed class EditChatInviteLink : EditChatInviteLink<long>
   {
     public EditChatInviteLink(long chatId, string inviteLink) : base(chatId, inviteLink) { }
   }
 
   namespace Usernames
   {
-    public sealed record EditChatInviteLink : EditChatInviteLink<string>
+    public sealed class EditChatInviteLink : EditChatInviteLink<string>
     {
       public EditChatInviteLink(string username, string inviteLink) : base(username, inviteLink) { }
     }

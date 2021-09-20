@@ -5,7 +5,7 @@ using Telegram.Bots.Types;
 
 namespace Telegram.Bots.Requests
 {
-  public abstract record GetChatMember<TChatId> : IRequest<ChatMember>,
+  public abstract class GetChatMember<TChatId> : IRequest<ChatMember>,
     IChatMemberTargetable<TChatId>
   {
     public TChatId ChatId { get; }
@@ -21,14 +21,14 @@ namespace Telegram.Bots.Requests
     }
   }
 
-  public sealed record GetChatMember : GetChatMember<long>
+  public sealed class GetChatMember : GetChatMember<long>
   {
     public GetChatMember(long chatId, long userId) : base(chatId, userId) { }
   }
 
   namespace Usernames
   {
-    public sealed record GetChatMember : GetChatMember<string>
+    public sealed class GetChatMember : GetChatMember<string>
     {
       public GetChatMember(string username, long userId) : base(username, userId) { }
     }

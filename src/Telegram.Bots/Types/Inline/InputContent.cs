@@ -6,17 +6,19 @@ using Telegram.Bots.Types.Payments;
 
 namespace Telegram.Bots.Types.Inline
 {
-  public abstract record InputContent;
+  public abstract class InputContent
+  {
+  }
 
-  public sealed record ContactContent : InputContent
+  public sealed class ContactContent : InputContent
   {
     public string PhoneNumber { get; }
 
     public string FirstName { get; }
 
-    public string? LastName { get; init; }
+    public string? LastName { get; set; }
 
-    public string? Vcard { get; init; }
+    public string? Vcard { get; set; }
 
     public ContactContent(string phoneNumber, string firstName)
     {
@@ -25,19 +27,19 @@ namespace Telegram.Bots.Types.Inline
     }
   }
 
-  public sealed record LocationContent : InputContent
+  public sealed class LocationContent : InputContent
   {
     public double Latitude { get; }
 
     public double Longitude { get; }
 
-    public double? HorizontalAccuracy { get; init; }
+    public double? HorizontalAccuracy { get; set; }
 
-    public int? LivePeriod { get; init; }
+    public int? LivePeriod { get; set; }
 
-    public uint? Heading { get; init; }
+    public uint? Heading { get; set; }
 
-    public uint? ProximityAlertRadius { get; init; }
+    public uint? ProximityAlertRadius { get; set; }
 
     public LocationContent(double latitude, double longitude)
     {
@@ -46,20 +48,20 @@ namespace Telegram.Bots.Types.Inline
     }
   }
 
-  public sealed record TextContent : InputContent
+  public sealed class TextContent : InputContent
   {
     public string Text { get; }
 
-    public ParseMode? ParseMode { get; init; }
+    public ParseMode? ParseMode { get; set; }
 
-    public IEnumerable<MessageEntity>? Entities { get; init; }
+    public IEnumerable<MessageEntity>? Entities { get; set; }
 
-    public bool? DisableWebPagePreview { get; init; }
+    public bool? DisableWebPagePreview { get; set; }
 
     public TextContent(string text) => Text = text;
   }
 
-  public sealed record VenueContent : InputContent
+  public sealed class VenueContent : InputContent
   {
     public string Title { get; }
 
@@ -69,13 +71,13 @@ namespace Telegram.Bots.Types.Inline
 
     public double Longitude { get; }
 
-    public string? FoursquareId { get; init; }
+    public string? FoursquareId { get; set; }
 
-    public string? FoursquareType { get; init; }
+    public string? FoursquareType { get; set; }
 
-    public string? GooglePlaceId { get; init; }
+    public string? GooglePlaceId { get; set; }
 
-    public string? GooglePlaceType { get; init; }
+    public string? GooglePlaceType { get; set; }
 
     public VenueContent(string title, string address, double latitude, double longitude)
     {
@@ -86,7 +88,7 @@ namespace Telegram.Bots.Types.Inline
     }
   }
 
-  public sealed record InvoiceContent : InputContent
+  public sealed class InvoiceContent : InputContent
   {
     public string Title { get; }
 
@@ -100,33 +102,33 @@ namespace Telegram.Bots.Types.Inline
 
     public IEnumerable<LabeledPrice> Prices { get; }
 
-    public int? MaxTipAmount { get; init; }
+    public int? MaxTipAmount { get; set; }
 
-    public IEnumerable<int>? SuggestedTipAmounts { get; init; }
+    public IEnumerable<int>? SuggestedTipAmounts { get; set; }
 
-    public string? ProviderData { get; init; }
+    public string? ProviderData { get; set; }
 
-    public string? PhotoUrl { get; init; }
+    public string? PhotoUrl { get; set; }
 
-    public int? PhotoSize { get; init; }
+    public int? PhotoSize { get; set; }
 
-    public int? PhotoWidth { get; init; }
+    public int? PhotoWidth { get; set; }
 
-    public int? PhotoHeight { get; init; }
+    public int? PhotoHeight { get; set; }
 
-    public bool? NeedName { get; init; }
+    public bool? NeedName { get; set; }
 
-    public bool? NeedPhoneNumber { get; init; }
+    public bool? NeedPhoneNumber { get; set; }
 
-    public bool? NeedEmail { get; init; }
+    public bool? NeedEmail { get; set; }
 
-    public bool? NeedShippingAddress { get; init; }
+    public bool? NeedShippingAddress { get; set; }
 
-    public bool? SendPhoneNumberToProvider { get; init; }
+    public bool? SendPhoneNumberToProvider { get; set; }
 
-    public bool? SendEmailToProvider { get; init; }
+    public bool? SendEmailToProvider { get; set; }
 
-    public bool? IsFlexible { get; init; }
+    public bool? IsFlexible { get; set; }
 
     public InvoiceContent(
       string title,

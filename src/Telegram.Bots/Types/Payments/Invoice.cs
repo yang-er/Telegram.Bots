@@ -3,16 +3,16 @@
 
 namespace Telegram.Bots.Types.Payments
 {
-  public sealed record Invoice
+  public sealed class Invoice
   {
-    public string Title { get; init; } = null!;
+    public string Title { get; set; } = null!;
 
-    public string Description { get; init; } = null!;
+    public string Description { get; set; } = null!;
 
-    public string StartParameter { get; init; } = null!;
+    public string StartParameter { get; set; } = null!;
 
-    public string Currency { get; init; } = null!;
+    public string Currency { get; set; } = null!;
 
-    public int TotalAmount { get; init; }
+    public int TotalAmount { get; set; }
   }
 }

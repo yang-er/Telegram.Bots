@@ -3,7 +3,7 @@
 
 namespace Telegram.Bots.Requests
 {
-  public abstract record GetChatMemberCount<TChatId> : IRequest<uint>, IChatTargetable<TChatId>
+  public abstract class GetChatMemberCount<TChatId> : IRequest<uint>, IChatTargetable<TChatId>
   {
     public TChatId ChatId { get; }
 
@@ -12,14 +12,14 @@ namespace Telegram.Bots.Requests
     protected GetChatMemberCount(TChatId chatId) => ChatId = chatId;
   }
 
-  public sealed record GetChatMemberCount : GetChatMemberCount<long>
+  public sealed class GetChatMemberCount : GetChatMemberCount<long>
   {
     public GetChatMemberCount(long chatId) : base(chatId) { }
   }
 
   namespace Usernames
   {
-    public sealed record GetChatMemberCount : GetChatMemberCount<string>
+    public sealed class GetChatMemberCount : GetChatMemberCount<string>
     {
       public GetChatMemberCount(string username) : base(username) { }
     }

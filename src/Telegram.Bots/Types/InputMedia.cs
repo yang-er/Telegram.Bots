@@ -14,22 +14,22 @@ namespace Telegram.Bots.Types
 
   public interface IUploadableMedia : IInputMedia
   {
-    bool? DisableContentTypeDetection { get; init; }
+    bool? DisableContentTypeDetection { get; set; }
 
     IEnumerable<InputFile?> GetFiles();
   }
 
-  public abstract record InputMedia<TMedia> : IInputMedia
+  public abstract class InputMedia<TMedia> : IInputMedia
   {
     public abstract InputMediaType Type { get; }
 
     public TMedia Media { get; }
 
-    public string? Caption { get; init; }
+    public string? Caption { get; set; }
 
-    public ParseMode? ParseMode { get; init; }
+    public ParseMode? ParseMode { get; set; }
 
-    public IEnumerable<MessageEntity>? CaptionEntities { get; init; }
+    public IEnumerable<MessageEntity>? CaptionEntities { get; set; }
 
     protected InputMedia(TMedia media) => Media = media;
   }

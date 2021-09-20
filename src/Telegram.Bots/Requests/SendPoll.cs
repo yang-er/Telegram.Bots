@@ -9,7 +9,7 @@ namespace Telegram.Bots.Requests
 {
   using Options = IEnumerable<string>;
 
-  public abstract record SendPoll<TChatId> : IRequest<PollMessage>,
+  public abstract class SendPoll<TChatId> : IRequest<PollMessage>,
     IChatTargetable<TChatId>, INotifiable, IReplyable, IMarkupable
   {
     public TChatId ChatId { get; }
@@ -18,7 +18,7 @@ namespace Telegram.Bots.Requests
 
     public Options Options { get; }
 
-    public bool? IsAnonymous { get; init; }
+    public bool? IsAnonymous { get; set; }
 
     public abstract PollType Type { get; }
 
@@ -26,15 +26,15 @@ namespace Telegram.Bots.Requests
 
     public DateTime? CloseDate { get; }
 
-    public bool? IsClosed { get; init; }
+    public bool? IsClosed { get; set; }
 
-    public bool? DisableNotification { get; init; }
+    public bool? DisableNotification { get; set; }
 
-    public int? ReplyToMessageId { get; init; }
+    public int? ReplyToMessageId { get; set; }
 
-    public bool? AllowSendingWithoutReply { get; init; }
+    public bool? AllowSendingWithoutReply { get; set; }
 
-    public ReplyMarkup? ReplyMarkup { get; init; }
+    public ReplyMarkup? ReplyMarkup { get; set; }
 
     public string Method { get; } = "sendPoll";
 
@@ -55,11 +55,11 @@ namespace Telegram.Bots.Requests
     }
   }
 
-  public abstract record SendRegularPoll<TChatId> : SendPoll<TChatId>
+  public abstract class SendRegularPoll<TChatId> : SendPoll<TChatId>
   {
     public override PollType Type { get; } = PollType.Regular;
 
-    public bool? AllowsMultipleAnswers { get; init; }
+    public bool? AllowsMultipleAnswers { get; set; }
 
     protected SendRegularPoll(TChatId chatId, string question, Options options, int openPeriod) :
       base(chatId, question, options, openPeriod) { }
@@ -72,17 +72,17 @@ namespace Telegram.Bots.Requests
       base(chatId, question, options, closeDate) { }
   }
 
-  public abstract record SendQuizPoll<TChatId> : SendPoll<TChatId>
+  public abstract class SendQuizPoll<TChatId> : SendPoll<TChatId>
   {
     public override PollType Type { get; } = PollType.Quiz;
 
-    public uint CorrectOptionId { get; init; }
+    public uint CorrectOptionId { get; set; }
 
-    public string? Explanation { get; init; } = null!;
+    public string? Explanation { get; set; } = null!;
 
-    public ParseMode? ExplanationParseMode { get; init; }
+    public ParseMode? ExplanationParseMode { get; set; }
 
-    public IEnumerable<MessageEntity>? ExplanationEntities { get; init; }
+    public IEnumerable<MessageEntity>? ExplanationEntities { get; set; }
 
     protected SendQuizPoll(
       TChatId chatId,
@@ -101,7 +101,7 @@ namespace Telegram.Bots.Requests
       base(chatId, question, options, closeDate) => CorrectOptionId = correctOptionId;
   }
 
-  public sealed record SendRegularPoll : SendRegularPoll<long>
+  public sealed class SendRegularPoll : SendRegularPoll<long>
   {
     public SendRegularPoll(long chatId, string question, Options options, int openPeriod) :
       base(chatId, question, options, openPeriod) { }
@@ -110,7 +110,7 @@ namespace Telegram.Bots.Requests
       base(chatId, question, options, closeDate) { }
   }
 
-  public sealed record SendQuizPoll : SendQuizPoll<long>
+  public sealed class SendQuizPoll : SendQuizPoll<long>
   {
     public SendQuizPoll(
       long chatId,
@@ -129,7 +129,7 @@ namespace Telegram.Bots.Requests
 
   namespace Usernames
   {
-    public sealed record SendRegularPoll : SendRegularPoll<string>
+    public sealed class SendRegularPoll : SendRegularPoll<string>
     {
       public SendRegularPoll(string username, string question, Options options, int openPeriod) :
         base(username, question, options, openPeriod) { }
@@ -142,7 +142,7 @@ namespace Telegram.Bots.Requests
         base(username, question, options, closeDate) { }
     }
 
-    public sealed record SendQuizPoll : SendQuizPoll<string>
+    public sealed class SendQuizPoll : SendQuizPoll<string>
     {
       public SendQuizPoll(
         string username,

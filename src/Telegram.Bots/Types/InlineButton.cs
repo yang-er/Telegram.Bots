@@ -6,42 +6,42 @@ using Telegram.Bots.Types.Games;
 
 namespace Telegram.Bots.Types
 {
-  public abstract record InlineButton
+  public abstract class InlineButton
   {
     public string Text { get; }
 
     protected InlineButton(string text) => Text = text;
   }
 
-  public sealed record UrlButton : InlineButton
+  public sealed class UrlButton : InlineButton
   {
     public Uri Url { get; }
 
     public UrlButton(string text, Uri url) : base(text) => Url = url;
   }
 
-  public sealed record LoginUrlButton : InlineButton
+  public sealed class LoginUrlButton : InlineButton
   {
     public LoginUrl LoginUrl { get; }
 
     public LoginUrlButton(string text, LoginUrl loginUrl) : base(text) => LoginUrl = loginUrl;
   }
 
-  public sealed record CallbackDataButton : InlineButton
+  public sealed class CallbackDataButton : InlineButton
   {
     public string Data { get; }
 
     public CallbackDataButton(string text, string data) : base(text) => Data = data;
   }
 
-  public sealed record SwitchInlineQueryButton : InlineButton
+  public sealed class SwitchInlineQueryButton : InlineButton
   {
     public string Query { get; }
 
     public SwitchInlineQueryButton(string text, string query) : base(text) => Query = query;
   }
 
-  public sealed record SwitchInlineQueryCurrentChatButton : InlineButton
+  public sealed class SwitchInlineQueryCurrentChatButton : InlineButton
   {
     public string Query { get; }
 
@@ -49,14 +49,14 @@ namespace Telegram.Bots.Types
       Query = query;
   }
 
-  public sealed record CallbackGameButton : InlineButton
+  public sealed class CallbackGameButton : InlineButton
   {
     public CallbackGame Game { get; } = CallbackGame.Default;
 
     public CallbackGameButton(string text) : base(text) { }
   }
 
-  public sealed record PayButton : InlineButton
+  public sealed class PayButton : InlineButton
   {
     public bool Pay { get; } = true;
 

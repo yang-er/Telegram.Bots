@@ -5,73 +5,73 @@ using System.Collections.Generic;
 
 namespace Telegram.Bots.Types.Passport
 {
-  public abstract record ElementError
+  public abstract class ElementError
   {
     public abstract ElementSource Source { get; }
 
-    public ElementType Type { get; init; }
+    public ElementType Type { get; set; }
 
-    public string Message { get; init; } = null!;
+    public string Message { get; set; } = null!;
   }
 
-  public abstract record DocumentError : ElementError
+  public abstract class DocumentError : ElementError
   {
-    public string Hash { get; init; } = null!;
+    public string Hash { get; set; } = null!;
   }
 
-  public abstract record DocumentsError : ElementError
+  public abstract class DocumentsError : ElementError
   {
-    public IEnumerable<string> Hashes { get; init; } = null!;
+    public IEnumerable<string> Hashes { get; set; } = null!;
   }
 
-  public sealed record DataFieldError : ElementError
+  public sealed class DataFieldError : ElementError
   {
     public override ElementSource Source { get; } = ElementSource.Data;
 
-    public string Name { get; init; } = null!;
+    public string Name { get; set; } = null!;
 
-    public string Hash { get; init; } = null!;
+    public string Hash { get; set; } = null!;
   }
 
-  public sealed record FrontSideError : DocumentError
+  public sealed class FrontSideError : DocumentError
   {
     public override ElementSource Source { get; } = ElementSource.FrontSide;
   }
 
-  public sealed record ReverseSideError : DocumentError
+  public sealed class ReverseSideError : DocumentError
   {
     public override ElementSource Source { get; } = ElementSource.ReverseSide;
   }
 
-  public sealed record SelfieError : DocumentError
+  public sealed class SelfieError : DocumentError
   {
     public override ElementSource Source { get; } = ElementSource.Selfie;
   }
 
-  public sealed record FileError : DocumentError
+  public sealed class FileError : DocumentError
   {
     public override ElementSource Source { get; } = ElementSource.File;
   }
 
-  public sealed record FilesError : DocumentsError
+  public sealed class FilesError : DocumentsError
   {
     public override ElementSource Source { get; } = ElementSource.Files;
   }
 
-  public sealed record TranslationFileError : DocumentError
+  public sealed class TranslationFileError : DocumentError
   {
     public override ElementSource Source { get; } = ElementSource.TranslationFile;
   }
 
-  public sealed record TranslationFilesError : DocumentsError
+  public sealed class TranslationFilesError : DocumentsError
   {
     public override ElementSource Source { get; } = ElementSource.TranslationFiles;
   }
 
-  public sealed record UnspecifiedError : ElementError
+  public sealed class UnspecifiedError : ElementError
   {
     public override ElementSource Source { get; } = ElementSource.Unspecified;
 
-    public string Hash { get; init; } = null!;
+    public string Hash { get; set; } = null!;
   }
 }

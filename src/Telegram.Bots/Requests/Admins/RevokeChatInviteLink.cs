@@ -5,7 +5,7 @@ using Telegram.Bots.Types;
 
 namespace Telegram.Bots.Requests.Admins
 {
-  public abstract record RevokeChatInviteLink<TChatId> : IRequest<ChatInviteLink>,
+  public abstract class RevokeChatInviteLink<TChatId> : IRequest<ChatInviteLink>,
     IChatTargetable<TChatId>
   {
     public TChatId ChatId { get; }
@@ -21,14 +21,14 @@ namespace Telegram.Bots.Requests.Admins
     }
   }
 
-  public sealed record RevokeChatInviteLink : RevokeChatInviteLink<long>
+  public sealed class RevokeChatInviteLink : RevokeChatInviteLink<long>
   {
     public RevokeChatInviteLink(long chatId, string inviteLink) : base(chatId, inviteLink) { }
   }
 
   namespace Usernames
   {
-    public sealed record RevokeChatInviteLink : RevokeChatInviteLink<string>
+    public sealed class RevokeChatInviteLink : RevokeChatInviteLink<string>
     {
       public RevokeChatInviteLink(string username, string inviteLink) :
         base(username, inviteLink) { }

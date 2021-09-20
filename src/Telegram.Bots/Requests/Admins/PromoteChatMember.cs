@@ -3,33 +3,33 @@
 
 namespace Telegram.Bots.Requests.Admins
 {
-  public abstract record PromoteChatMember<TChatId> : IRequest<bool>, IChatMemberTargetable<TChatId>
+  public abstract class PromoteChatMember<TChatId> : IRequest<bool>, IChatMemberTargetable<TChatId>
   {
     public TChatId ChatId { get; }
 
     public long UserId { get; }
 
-    public bool? IsAnonymous { get; init; }
+    public bool? IsAnonymous { get; set; }
 
-    public bool? CanManageChat { get; init; }
+    public bool? CanManageChat { get; set; }
 
-    public bool? CanChangeInfo { get; init; }
+    public bool? CanChangeInfo { get; set; }
 
-    public bool? CanPostMessages { get; init; }
+    public bool? CanPostMessages { get; set; }
 
-    public bool? CanEditMessages { get; init; }
+    public bool? CanEditMessages { get; set; }
 
-    public bool? CanDeleteMessages { get; init; }
+    public bool? CanDeleteMessages { get; set; }
 
-    public bool? CanManageVoiceChats { get; init; }
+    public bool? CanManageVoiceChats { get; set; }
 
-    public bool? CanInviteUsers { get; init; }
+    public bool? CanInviteUsers { get; set; }
 
-    public bool? CanRestrictMembers { get; init; }
+    public bool? CanRestrictMembers { get; set; }
 
-    public bool? CanPinMessages { get; init; }
+    public bool? CanPinMessages { get; set; }
 
-    public bool? CanPromoteMembers { get; init; }
+    public bool? CanPromoteMembers { get; set; }
 
     public string Method { get; } = "promoteChatMember";
 
@@ -40,14 +40,14 @@ namespace Telegram.Bots.Requests.Admins
     }
   }
 
-  public sealed record PromoteChatMember : PromoteChatMember<long>
+  public sealed class PromoteChatMember : PromoteChatMember<long>
   {
     public PromoteChatMember(long chatId, long userId) : base(chatId, userId) { }
   }
 
   namespace Usernames
   {
-    public sealed record PromoteChatMember : PromoteChatMember<string>
+    public sealed class PromoteChatMember : PromoteChatMember<string>
     {
       public PromoteChatMember(string username, long userId) : base(username, userId) { }
     }

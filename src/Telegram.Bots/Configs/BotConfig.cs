@@ -6,20 +6,20 @@ using System.Collections.Generic;
 
 namespace Telegram.Bots.Configs
 {
-  public sealed record BotConfig : IBotConfig
+  public sealed class BotConfig : IBotConfig
   {
-    public Uri BaseAddress { get; init; } = new("https://api.telegram.org/");
+    public Uri BaseAddress { get; set; } = new("https://api.telegram.org/");
 
-    public string Token { get; init; } = null!;
+    public string Token { get; set; } = null!;
 
-    public TimeSpan Timeout { get; init; } = TimeSpan.FromSeconds(90);
+    public TimeSpan Timeout { get; set; } = TimeSpan.FromSeconds(90);
 
-    public int HandlerLifetime { get; init; } = 600;
+    public int HandlerLifetime { get; set; } = 600;
 
-    public IEnumerable<int> WaitsBeforeRetry { get; init; } = new[] {1, 2, 5};
+    public IEnumerable<int> WaitsBeforeRetry { get; set; } = new[] {1, 2, 5};
 
-    public int EventsAllowedBeforeBreaking { get; init; } = 3;
+    public int EventsAllowedBeforeBreaking { get; set; } = 3;
 
-    public int BreakDuration { get; init; } = 30;
+    public int BreakDuration { get; set; } = 30;
   }
 }

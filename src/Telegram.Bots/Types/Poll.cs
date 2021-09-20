@@ -6,42 +6,42 @@ using System.Collections.Generic;
 
 namespace Telegram.Bots.Types
 {
-  public abstract record Poll
+  public abstract class Poll
   {
-    public string Id { get; init; } = null!;
+    public string Id { get; set; } = null!;
 
-    public string Question { get; init; } = null!;
+    public string Question { get; set; } = null!;
 
-    public IReadOnlyList<PollOption> Options { get; init; } = null!;
+    public IReadOnlyList<PollOption> Options { get; set; } = null!;
 
-    public int TotalVoterCount { get; init; }
+    public int TotalVoterCount { get; set; }
 
-    public bool IsClosed { get; init; }
+    public bool IsClosed { get; set; }
 
-    public bool IsAnonymous { get; init; }
+    public bool IsAnonymous { get; set; }
 
     public abstract PollType? Type { get; }
 
-    public int? OpenPeriod { get; init; }
+    public int? OpenPeriod { get; set; }
 
-    public DateTime? CloseDate { get; init; }
+    public DateTime? CloseDate { get; set; }
   }
 
-  public sealed record RegularPoll : Poll
+  public sealed class RegularPoll : Poll
   {
     public override PollType? Type { get; } = PollType.Regular;
 
-    public bool? AllowsMultipleAnswers { get; init; }
+    public bool? AllowsMultipleAnswers { get; set; }
   }
 
-  public sealed record QuizPoll : Poll
+  public sealed class QuizPoll : Poll
   {
     public override PollType? Type { get; } = PollType.Quiz;
 
-    public uint? CorrectOptionId { get; init; }
+    public uint? CorrectOptionId { get; set; }
 
-    public string? Explanation { get; init; }
+    public string? Explanation { get; set; }
 
-    public IReadOnlyList<MessageEntity>? ExplanationEntities { get; init; }
+    public IReadOnlyList<MessageEntity>? ExplanationEntities { get; set; }
   }
 }

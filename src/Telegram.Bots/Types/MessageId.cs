@@ -1,4 +1,16 @@
 namespace Telegram.Bots.Types
 {
-  public sealed record MessageId(int Id);
+  public sealed class MessageId
+  {
+    public int Id { get; set; }
+
+    public MessageId()
+    {
+    }
+
+    public MessageId(int id)
+    {
+      this.Id = id;
+    }
+  }
 }

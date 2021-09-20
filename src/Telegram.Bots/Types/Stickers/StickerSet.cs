@@ -5,18 +5,18 @@ using System.Collections.Generic;
 
 namespace Telegram.Bots.Types.Stickers
 {
-  public sealed record StickerSet
+  public sealed class StickerSet
   {
-    public string Name { get; init; } = null!;
+    public string Name { get; set; } = null!;
 
-    public string Title { get; init; } = null!;
+    public string Title { get; set; } = null!;
 
-    public bool IsAnimated { get; init; }
+    public bool IsAnimated { get; set; }
 
-    public bool ContainsMasks { get; init; }
+    public bool ContainsMasks { get; set; }
 
-    public IReadOnlyList<Sticker> Stickers { get; init; } = null!;
+    public IReadOnlyList<Sticker> Stickers { get; set; } = null!;
 
-    public Photo? Thumb { get; init; }
+    public Photo? Thumb { get; set; }
   }
 }

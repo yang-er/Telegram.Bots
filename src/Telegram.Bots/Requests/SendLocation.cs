@@ -5,7 +5,7 @@ using Telegram.Bots.Types;
 
 namespace Telegram.Bots.Requests
 {
-  public abstract record SendLocation<TChatId> : IRequest<LocationMessage>,
+  public abstract class SendLocation<TChatId> : IRequest<LocationMessage>,
     IChatTargetable<TChatId>, INotifiable, IReplyable, IMarkupable
   {
     public TChatId ChatId { get; }
@@ -14,21 +14,21 @@ namespace Telegram.Bots.Requests
 
     public double Longitude { get; }
 
-    public double? HorizontalAccuracy { get; init; }
+    public double? HorizontalAccuracy { get; set; }
 
-    public int? LivePeriod { get; init; }
+    public int? LivePeriod { get; set; }
 
-    public uint? Heading { get; init; }
+    public uint? Heading { get; set; }
 
-    public uint? ProximityAlertRadius { get; init; }
+    public uint? ProximityAlertRadius { get; set; }
 
-    public bool? DisableNotification { get; init; }
+    public bool? DisableNotification { get; set; }
 
-    public int? ReplyToMessageId { get; init; }
+    public int? ReplyToMessageId { get; set; }
 
-    public bool? AllowSendingWithoutReply { get; init; }
+    public bool? AllowSendingWithoutReply { get; set; }
 
-    public ReplyMarkup? ReplyMarkup { get; init; }
+    public ReplyMarkup? ReplyMarkup { get; set; }
 
     public string Method { get; } = "sendLocation";
 
@@ -40,7 +40,7 @@ namespace Telegram.Bots.Requests
     }
   }
 
-  public sealed record SendLocation : SendLocation<long>
+  public sealed class SendLocation : SendLocation<long>
   {
     public SendLocation(long chatId, double latitude, double longitude) :
       base(chatId, latitude, longitude) { }
@@ -48,7 +48,7 @@ namespace Telegram.Bots.Requests
 
   namespace Usernames
   {
-    public sealed record SendLocation : SendLocation<string>
+    public sealed class SendLocation : SendLocation<string>
     {
       public SendLocation(string username, double latitude, double longitude) :
         base(username, latitude, longitude) { }

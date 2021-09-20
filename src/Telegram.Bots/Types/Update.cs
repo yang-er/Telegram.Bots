@@ -6,73 +6,73 @@ using Telegram.Bots.Types.Payments;
 
 namespace Telegram.Bots.Types
 {
-  public abstract record Update
+  public abstract class Update
   {
-    public int Id { get; init; }
+    public int Id { get; set; }
   }
 
-  public sealed record MessageUpdate : Update
+  public sealed class MessageUpdate : Update
   {
-    public Message Data { get; init; } = null!;
+    public Message Data { get; set; } = null!;
   }
 
-  public sealed record EditedMessageUpdate : Update
+  public sealed class EditedMessageUpdate : Update
   {
-    public Message Data { get; init; } = null!;
+    public Message Data { get; set; } = null!;
   }
 
-  public sealed record ChannelPostUpdate : Update
+  public sealed class ChannelPostUpdate : Update
   {
-    public Message Data { get; init; } = null!;
+    public Message Data { get; set; } = null!;
   }
 
-  public sealed record EditedChannelPostUpdate : Update
+  public sealed class EditedChannelPostUpdate : Update
   {
-    public Message Data { get; init; } = null!;
+    public Message Data { get; set; } = null!;
   }
 
-  public sealed record InlineQueryUpdate : Update
+  public sealed class InlineQueryUpdate : Update
   {
-    public InlineQuery Data { get; init; } = null!;
+    public InlineQuery Data { get; set; } = null!;
   }
 
-  public sealed record ChosenInlineResultUpdate : Update
+  public sealed class ChosenInlineResultUpdate : Update
   {
-    public ChosenInlineResult Data { get; init; } = null!;
+    public ChosenInlineResult Data { get; set; } = null!;
   }
 
-  public sealed record CallbackQueryUpdate : Update
+  public sealed class CallbackQueryUpdate : Update
   {
-    public CallbackQuery Data { get; init; } = null!;
+    public CallbackQuery Data { get; set; } = null!;
   }
 
-  public sealed record ShippingQueryUpdate : Update
+  public sealed class ShippingQueryUpdate : Update
   {
-    public ShippingQuery Data { get; init; } = null!;
+    public ShippingQuery Data { get; set; } = null!;
   }
 
-  public sealed record PreCheckoutQueryUpdate : Update
+  public sealed class PreCheckoutQueryUpdate : Update
   {
-    public PreCheckoutQuery Data { get; init; } = null!;
+    public PreCheckoutQuery Data { get; set; } = null!;
   }
 
-  public sealed record PollUpdate : Update
+  public sealed class PollUpdate : Update
   {
-    public Poll Data { get; init; } = null!;
+    public Poll Data { get; set; } = null!;
   }
 
-  public sealed record PollAnswerUpdate : Update
+  public sealed class PollAnswerUpdate : Update
   {
-    public PollAnswer Data { get; init; } = null!;
+    public PollAnswer Data { get; set; } = null!;
   }
 
-  public sealed record MyChatMemberUpdate : Update
+  public sealed class MyChatMemberUpdate : Update
   {
-    public ChatMemberUpdated Data { get; init; } = null!;
+    public ChatMemberUpdated Data { get; set; } = null!;
   }
 
-  public sealed record ChatMemberUpdate : Update
+  public sealed class ChatMemberUpdate : Update
   {
-    public ChatMemberUpdated Data { get; init; } = null!;
+    public ChatMemberUpdated Data { get; set; } = null!;
   }
 }

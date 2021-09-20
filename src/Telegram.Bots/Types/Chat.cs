@@ -3,43 +3,43 @@
 
 namespace Telegram.Bots.Types
 {
-  public record Chat
+  public class Chat
   {
-    public long Id { get; init; }
+    public long Id { get; set; }
 
-    public ChatType Type { get; init; }
+    public ChatType Type { get; set; }
 
-    public string? Title { get; init; }
+    public string? Title { get; set; }
 
-    public string? Username { get; init; }
+    public string? Username { get; set; }
 
-    public string? FirstName { get; init; }
+    public string? FirstName { get; set; }
 
-    public string? LastName { get; init; }
+    public string? LastName { get; set; }
   }
 
-  public sealed record ChatInfo : Chat
+  public sealed class ChatInfo : Chat
   {
-    public ChatPhoto? Photo { get; init; }
+    public ChatPhoto? Photo { get; set; }
 
-    public string? Bio { get; init; }
+    public string? Bio { get; set; }
 
-    public string? Description { get; init; }
+    public string? Description { get; set; }
 
-    public string? InviteLink { get; init; }
+    public string? InviteLink { get; set; }
 
-    public Message? Pinned { get; init; }
+    public Message? Pinned { get; set; }
 
-    public ChatPermissions? Permissions { get; init; }
+    public ChatPermissions? Permissions { get; set; }
 
-    public int SlowModeDelay { get; init; }
+    public int SlowModeDelay { get; set; }
 
-    public string? StickerSetName { get; init; }
+    public string? StickerSetName { get; set; }
 
-    public bool CanSetStickerSet { get; init; }
+    public bool CanSetStickerSet { get; set; }
 
-    public long? LinkedChatId { get; init; }
+    public long? LinkedChatId { get; set; }
 
-    public ChatLocation? Location { get; init; }
+    public ChatLocation? Location { get; set; }
   }
 }

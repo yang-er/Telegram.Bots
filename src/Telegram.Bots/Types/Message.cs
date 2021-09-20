@@ -10,240 +10,240 @@ using Telegram.Bots.Types.Stickers;
 
 namespace Telegram.Bots.Types
 {
-  public abstract record Message
+  public abstract class Message
   {
-    public int Id { get; init; }
+    public int Id { get; set; }
 
-    public User? From { get; init; }
+    public User? From { get; set; }
 
-    public Chat? SenderChat { get; init; }
+    public Chat? SenderChat { get; set; }
 
-    public DateTime Date { get; init; } = DateTime.UnixEpoch;
+    public DateTime Date { get; set; } = DateTime.UnixEpoch;
 
-    public Chat Chat { get; init; } = null!;
+    public Chat Chat { get; set; } = null!;
 
-    public User? ForwardFrom { get; init; }
+    public User? ForwardFrom { get; set; }
 
-    public Chat? ForwardFromChat { get; init; }
+    public Chat? ForwardFromChat { get; set; }
 
-    public int? ForwardFromMessageId { get; init; }
+    public int? ForwardFromMessageId { get; set; }
 
-    public string? ForwardSignature { get; init; }
+    public string? ForwardSignature { get; set; }
 
-    public string? ForwardSenderName { get; init; }
+    public string? ForwardSenderName { get; set; }
 
-    public DateTime? ForwardDate { get; init; }
+    public DateTime? ForwardDate { get; set; }
 
-    public Message? ReplyToMessage { get; init; }
+    public Message? ReplyToMessage { get; set; }
 
-    public User? ViaBot { get; init; }
+    public User? ViaBot { get; set; }
 
-    public DateTime? EditDate { get; init; }
+    public DateTime? EditDate { get; set; }
 
-    public string? AuthorSignature { get; init; }
+    public string? AuthorSignature { get; set; }
 
-    public InlineKeyboardMarkup? ReplyMarkup { get; init; }
+    public InlineKeyboardMarkup? ReplyMarkup { get; set; }
 
     public bool IsAutomaticallyForwarded => From?.Id == 777000;
 
     public bool IsFromAnonymousGroupAdmin => From?.Id == 1087968824;
   }
 
-  public abstract record CaptionableMessage : Message
+  public abstract class CaptionableMessage : Message
   {
-    public string? Caption { get; init; }
+    public string? Caption { get; set; }
 
-    public IReadOnlyList<MessageEntity>? CaptionEntities { get; init; }
+    public IReadOnlyList<MessageEntity>? CaptionEntities { get; set; }
   }
 
-  public abstract record MediaMessage : CaptionableMessage { }
+  public abstract class MediaMessage : CaptionableMessage { }
 
-  public abstract record MediaGroupMessage : MediaMessage
+  public abstract class MediaGroupMessage : MediaMessage
   {
-    public string? MediaGroupId { get; init; }
+    public string? MediaGroupId { get; set; }
   }
 
-  public abstract record ServiceMessage : Message { }
+  public abstract class ServiceMessage : Message { }
 
-  public sealed record TextMessage : Message
+  public sealed class TextMessage : Message
   {
-    public string Text { get; init; } = null!;
+    public string Text { get; set; } = null!;
 
-    public IReadOnlyList<MessageEntity>? Entities { get; init; }
+    public IReadOnlyList<MessageEntity>? Entities { get; set; }
   }
 
-  public sealed record AnimationMessage : MediaMessage
+  public sealed class AnimationMessage : MediaMessage
   {
-    public Animation Animation { get; init; } = null!;
+    public Animation Animation { get; set; } = null!;
   }
 
-  public sealed record AudioMessage : MediaMessage
+  public sealed class AudioMessage : MediaMessage
   {
-    public Audio Audio { get; init; } = null!;
+    public Audio Audio { get; set; } = null!;
   }
 
-  public sealed record DocumentMessage : MediaMessage
+  public sealed class DocumentMessage : MediaMessage
   {
-    public Document Document { get; init; } = null!;
+    public Document Document { get; set; } = null!;
   }
 
-  public sealed record PhotoMessage : MediaGroupMessage
+  public sealed class PhotoMessage : MediaGroupMessage
   {
-    public IReadOnlyList<Photo> PhotoSet { get; init; } = null!;
+    public IReadOnlyList<Photo> PhotoSet { get; set; } = null!;
   }
 
-  public sealed record StickerMessage : Message
+  public sealed class StickerMessage : Message
   {
-    public Sticker Sticker { get; init; } = null!;
+    public Sticker Sticker { get; set; } = null!;
   }
 
-  public sealed record VideoMessage : MediaGroupMessage
+  public sealed class VideoMessage : MediaGroupMessage
   {
-    public Video Video { get; init; } = null!;
+    public Video Video { get; set; } = null!;
   }
 
-  public sealed record VideoNoteMessage : Message
+  public sealed class VideoNoteMessage : Message
   {
-    public VideoNote VideoNote { get; init; } = null!;
+    public VideoNote VideoNote { get; set; } = null!;
   }
 
-  public sealed record VoiceMessage : CaptionableMessage
+  public sealed class VoiceMessage : CaptionableMessage
   {
-    public Voice Voice { get; init; } = null!;
+    public Voice Voice { get; set; } = null!;
   }
 
-  public sealed record ContactMessage : Message
+  public sealed class ContactMessage : Message
   {
-    public Contact Contact { get; init; } = null!;
+    public Contact Contact { get; set; } = null!;
   }
 
-  public sealed record DiceMessage : Message
+  public sealed class DiceMessage : Message
   {
-    public Dice Dice { get; init; } = null!;
+    public Dice Dice { get; set; } = null!;
   }
 
-  public sealed record GameMessage : Message
+  public sealed class GameMessage : Message
   {
-    public Game Game { get; init; } = null!;
+    public Game Game { get; set; } = null!;
   }
 
-  public sealed record PollMessage : Message
+  public sealed class PollMessage : Message
   {
-    public Poll Poll { get; init; } = null!;
+    public Poll Poll { get; set; } = null!;
   }
 
-  public sealed record VenueMessage : Message
+  public sealed class VenueMessage : Message
   {
-    public Venue Venue { get; init; } = null!;
+    public Venue Venue { get; set; } = null!;
   }
 
-  public sealed record LocationMessage : Message
+  public sealed class LocationMessage : Message
   {
-    public Location Location { get; init; } = null!;
+    public Location Location { get; set; } = null!;
   }
 
-  public sealed record NewChatMembersMessage : Message
+  public sealed class NewChatMembersMessage : Message
   {
-    public IReadOnlyList<User> Members { get; init; } = null!;
+    public IReadOnlyList<User> Members { get; set; } = null!;
   }
 
-  public sealed record LeftChatMemberMessage : Message
+  public sealed class LeftChatMemberMessage : Message
   {
-    public User Member { get; init; } = null!;
+    public User Member { get; set; } = null!;
   }
 
-  public sealed record NewChatTitleMessage : Message
+  public sealed class NewChatTitleMessage : Message
   {
-    public string Title { get; init; } = null!;
+    public string Title { get; set; } = null!;
   }
 
-  public sealed record NewChatPhotoMessage : Message
+  public sealed class NewChatPhotoMessage : Message
   {
-    public IReadOnlyList<Photo> PhotoSet { get; init; } = null!;
+    public IReadOnlyList<Photo> PhotoSet { get; set; } = null!;
   }
 
-  public sealed record DeleteChatPhotoMessage : ServiceMessage
+  public sealed class DeleteChatPhotoMessage : ServiceMessage
   {
-    public bool Deleted { get; init; }
+    public bool Deleted { get; set; }
   }
 
-  public sealed record GroupChatCreatedMessage : ServiceMessage
+  public sealed class GroupChatCreatedMessage : ServiceMessage
   {
-    public bool Created { get; init; }
+    public bool Created { get; set; }
   }
 
-  public sealed record SupergroupChatCreatedMessage : ServiceMessage
+  public sealed class SupergroupChatCreatedMessage : ServiceMessage
   {
-    public bool Created { get; init; }
+    public bool Created { get; set; }
   }
 
-  public sealed record ChannelChatCreatedMessage : ServiceMessage
+  public sealed class ChannelChatCreatedMessage : ServiceMessage
   {
-    public bool Created { get; init; }
+    public bool Created { get; set; }
   }
 
-  public sealed record AutoDeleteTimerChangedMessage : ServiceMessage
+  public sealed class AutoDeleteTimerChangedMessage : ServiceMessage
   {
-    public int AutoDeleteTime { get; init; }
+    public int AutoDeleteTime { get; set; }
   }
 
-  public sealed record MigrateToChatMessage : Message
+  public sealed class MigrateToChatMessage : Message
   {
-    public long ChatId { get; init; }
+    public long ChatId { get; set; }
   }
 
-  public sealed record MigrateFromChatMessage : Message
+  public sealed class MigrateFromChatMessage : Message
   {
-    public long ChatId { get; init; }
+    public long ChatId { get; set; }
   }
 
-  public sealed record PinnedMessage : Message
+  public sealed class PinnedMessage : Message
   {
-    public Message Pinned { get; init; } = null!;
+    public Message Pinned { get; set; } = null!;
   }
 
-  public sealed record InvoiceMessage : Message
+  public sealed class InvoiceMessage : Message
   {
-    public Invoice Invoice { get; init; } = null!;
+    public Invoice Invoice { get; set; } = null!;
   }
 
-  public sealed record SuccessfulPaymentMessage : ServiceMessage
+  public sealed class SuccessfulPaymentMessage : ServiceMessage
   {
-    public SuccessfulPayment Payment { get; init; } = null!;
+    public SuccessfulPayment Payment { get; set; } = null!;
   }
 
-  public sealed record ConnectedWebsiteMessage : Message
+  public sealed class ConnectedWebsiteMessage : Message
   {
-    public Uri Website { get; init; } = null!;
+    public Uri Website { get; set; } = null!;
   }
 
-  public sealed record PassportDataMessage : Message
+  public sealed class PassportDataMessage : Message
   {
-    public PassportData PassportData { get; init; } = null!;
+    public PassportData PassportData { get; set; } = null!;
   }
 
-  public sealed record ProximityAlertTriggeredMessage : ServiceMessage
+  public sealed class ProximityAlertTriggeredMessage : ServiceMessage
   {
-    public ProximityAlertTriggered ProximityAlertTriggered { get; init; } = null!;
+    public ProximityAlertTriggered ProximityAlertTriggered { get; set; } = null!;
   }
 
-  public sealed record VoiceChatScheduledMessage : ServiceMessage
+  public sealed class VoiceChatScheduledMessage : ServiceMessage
   {
-    public VoiceChatScheduled Scheduled { get; init; } = null!;
+    public VoiceChatScheduled Scheduled { get; set; } = null!;
   }
 
-  public sealed record VoiceChatStartedMessage : ServiceMessage
+  public sealed class VoiceChatStartedMessage : ServiceMessage
   {
-    public VoiceChatStarted Started { get; init; } = null!;
+    public VoiceChatStarted Started { get; set; } = null!;
   }
 
-  public sealed record VoiceChatEndedMessage : ServiceMessage
+  public sealed class VoiceChatEndedMessage : ServiceMessage
   {
-    public VoiceChatEnded Ended { get; init; } = null!;
+    public VoiceChatEnded Ended { get; set; } = null!;
   }
 
-  public sealed record VoiceChatParticipantsInvitedMessage : ServiceMessage
+  public sealed class VoiceChatParticipantsInvitedMessage : ServiceMessage
   {
-    public VoiceChatParticipantsInvited ParticipantsInvited { get; init; } = null!;
+    public VoiceChatParticipantsInvited ParticipantsInvited { get; set; } = null!;
   }
 }

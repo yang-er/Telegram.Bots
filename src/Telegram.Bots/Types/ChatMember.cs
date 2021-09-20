@@ -7,90 +7,90 @@ namespace Telegram.Bots.Types
 {
   using Status = ChatMemberStatus;
 
-  public abstract record ChatMember
+  public abstract class ChatMember
   {
-    public User User { get; init; } = null!;
+    public User User { get; set; } = null!;
 
     public abstract Status Status { get; }
   }
 
-  public abstract record PrivilegedMember : ChatMember
+  public abstract class PrivilegedMember : ChatMember
   {
-    public string? CustomTitle { get; init; }
+    public string? CustomTitle { get; set; }
 
-    public bool IsAnonymous { get; init; }
+    public bool IsAnonymous { get; set; }
   }
 
-  public sealed record Creator : PrivilegedMember
+  public sealed class Creator : PrivilegedMember
   {
     public override Status Status { get; } = Status.Creator;
   }
 
-  public sealed record Administrator : PrivilegedMember
+  public sealed class Administrator : PrivilegedMember
   {
     public override Status Status { get; } = Status.Administrator;
 
-    public bool CanBeEdited { get; init; }
+    public bool CanBeEdited { get; set; }
 
-    public bool CanManageChat { get; init; }
+    public bool CanManageChat { get; set; }
 
-    public bool CanPostMessages { get; init; }
+    public bool CanPostMessages { get; set; }
 
-    public bool CanEditMessages { get; init; }
+    public bool CanEditMessages { get; set; }
 
-    public bool CanDeleteMessages { get; init; }
+    public bool CanDeleteMessages { get; set; }
 
-    public bool CanManageVoiceChats { get; init; }
+    public bool CanManageVoiceChats { get; set; }
 
-    public bool CanRestrictMembers { get; init; }
+    public bool CanRestrictMembers { get; set; }
 
-    public bool CanPromoteMembers { get; init; }
+    public bool CanPromoteMembers { get; set; }
 
-    public bool CanChangeInfo { get; init; }
+    public bool CanChangeInfo { get; set; }
 
-    public bool CanInviteUsers { get; init; }
+    public bool CanInviteUsers { get; set; }
 
-    public bool CanPinMessages { get; init; }
+    public bool CanPinMessages { get; set; }
   }
 
-  public sealed record NormalMember : ChatMember
+  public sealed class NormalMember : ChatMember
   {
     public override Status Status { get; } = Status.Member;
   }
 
-  public sealed record RestrictedMember : ChatMember
+  public sealed class RestrictedMember : ChatMember
   {
     public override Status Status { get; } = Status.Restricted;
 
-    public DateTime UntilDate { get; init; }
+    public DateTime UntilDate { get; set; }
 
-    public bool CanChangeInfo { get; init; }
+    public bool CanChangeInfo { get; set; }
 
-    public bool CanInviteUsers { get; init; }
+    public bool CanInviteUsers { get; set; }
 
-    public bool CanPinMessages { get; init; }
+    public bool CanPinMessages { get; set; }
 
-    public bool IsMember { get; init; }
+    public bool IsMember { get; set; }
 
-    public bool CanSendMessages { get; init; }
+    public bool CanSendMessages { get; set; }
 
-    public bool CanSendMediaMessages { get; init; }
+    public bool CanSendMediaMessages { get; set; }
 
-    public bool CanSendPolls { get; init; }
+    public bool CanSendPolls { get; set; }
 
-    public bool CanSendOtherMessages { get; init; }
+    public bool CanSendOtherMessages { get; set; }
 
-    public bool CanAddWebPagePreviews { get; init; }
+    public bool CanAddWebPagePreviews { get; set; }
   }
 
-  public sealed record KickedMember : ChatMember
+  public sealed class KickedMember : ChatMember
   {
     public override Status Status { get; } = Status.Kicked;
 
-    public DateTime UntilDate { get; init; }
+    public DateTime UntilDate { get; set; }
   }
 
-  public sealed record LeftMember : ChatMember
+  public sealed class LeftMember : ChatMember
   {
     public override Status Status { get; } = Status.Left;
   }

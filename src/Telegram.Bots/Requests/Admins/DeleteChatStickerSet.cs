@@ -3,7 +3,7 @@
 
 namespace Telegram.Bots.Requests.Admins
 {
-  public abstract record DeleteChatStickerSet<TChatId> : IRequest<bool>, IChatTargetable<TChatId>
+  public abstract class DeleteChatStickerSet<TChatId> : IRequest<bool>, IChatTargetable<TChatId>
   {
     public TChatId ChatId { get; }
 
@@ -12,14 +12,14 @@ namespace Telegram.Bots.Requests.Admins
     protected DeleteChatStickerSet(TChatId chatId) => ChatId = chatId;
   }
 
-  public sealed record DeleteChatStickerSet : DeleteChatStickerSet<long>
+  public sealed class DeleteChatStickerSet : DeleteChatStickerSet<long>
   {
     public DeleteChatStickerSet(long chatId) : base(chatId) { }
   }
 
   namespace Usernames
   {
-    public sealed record DeleteChatStickerSet : DeleteChatStickerSet<string>
+    public sealed class DeleteChatStickerSet : DeleteChatStickerSet<string>
     {
       public DeleteChatStickerSet(string username) : base(username) { }
     }

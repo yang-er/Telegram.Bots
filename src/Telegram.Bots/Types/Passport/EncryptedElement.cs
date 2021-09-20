@@ -5,106 +5,106 @@ using System.Collections.Generic;
 
 namespace Telegram.Bots.Types.Passport
 {
-  public abstract record EncryptedElement
+  public abstract class EncryptedElement
   {
     public abstract ElementType Type { get; }
 
-    public string Hash { get; init; } = null!;
+    public string Hash { get; set; } = null!;
   }
 
-  public abstract record EncryptedDocument : EncryptedElement
+  public abstract class EncryptedDocument : EncryptedElement
   {
-    public IReadOnlyList<PassportFile> Files { get; init; } = null!;
+    public IReadOnlyList<PassportFile> Files { get; set; } = null!;
 
-    public IReadOnlyList<PassportFile>? Translation { get; init; }
+    public IReadOnlyList<PassportFile>? Translation { get; set; }
   }
 
-  public abstract record EncryptedIdentityDocument : EncryptedElement
+  public abstract class EncryptedIdentityDocument : EncryptedElement
   {
-    public string Data { get; init; } = null!;
+    public string Data { get; set; } = null!;
 
-    public PassportFile FrontSide { get; init; } = null!;
+    public PassportFile FrontSide { get; set; } = null!;
 
-    public PassportFile ReverseSide { get; init; } = null!;
+    public PassportFile ReverseSide { get; set; } = null!;
 
-    public IReadOnlyList<PassportFile>? Translation { get; init; }
+    public IReadOnlyList<PassportFile>? Translation { get; set; }
   }
 
-  public abstract record EncryptedIdentityDocumentWithSelfie : EncryptedIdentityDocument
+  public abstract class EncryptedIdentityDocumentWithSelfie : EncryptedIdentityDocument
   {
-    public PassportFile Selfie { get; init; } = null!;
+    public PassportFile Selfie { get; set; } = null!;
   }
 
-  public sealed record EncryptedPersonalDetails : EncryptedElement
+  public sealed class EncryptedPersonalDetails : EncryptedElement
   {
     public override ElementType Type { get; } = ElementType.PersonalDetails;
 
-    public string Data { get; init; } = null!;
+    public string Data { get; set; } = null!;
   }
 
-  public sealed record EncryptedPassport : EncryptedIdentityDocument
+  public sealed class EncryptedPassport : EncryptedIdentityDocument
   {
     public override ElementType Type { get; } = ElementType.Passport;
   }
 
-  public sealed record EncryptedDriverLicense : EncryptedIdentityDocumentWithSelfie
+  public sealed class EncryptedDriverLicense : EncryptedIdentityDocumentWithSelfie
   {
     public override ElementType Type { get; } = ElementType.DriverLicense;
   }
 
-  public sealed record EncryptedIdentityCard : EncryptedIdentityDocumentWithSelfie
+  public sealed class EncryptedIdentityCard : EncryptedIdentityDocumentWithSelfie
   {
     public override ElementType Type { get; } = ElementType.IdentityCard;
   }
 
-  public sealed record EncryptedInternalPassport : EncryptedIdentityDocument
+  public sealed class EncryptedInternalPassport : EncryptedIdentityDocument
   {
     public override ElementType Type { get; } = ElementType.InternalPassport;
   }
 
-  public sealed record EncryptedAddress : EncryptedElement
+  public sealed class EncryptedAddress : EncryptedElement
   {
     public override ElementType Type { get; } = ElementType.Address;
 
-    public string Data { get; init; } = null!;
+    public string Data { get; set; } = null!;
   }
 
-  public sealed record EncryptedUtilityBill : EncryptedDocument
+  public sealed class EncryptedUtilityBill : EncryptedDocument
   {
     public override ElementType Type { get; } = ElementType.UtilityBill;
   }
 
-  public sealed record EncryptedBankStatement : EncryptedDocument
+  public sealed class EncryptedBankStatement : EncryptedDocument
   {
     public override ElementType Type { get; } = ElementType.BankStatement;
   }
 
-  public sealed record EncryptedRentalAgreement : EncryptedDocument
+  public sealed class EncryptedRentalAgreement : EncryptedDocument
   {
     public override ElementType Type { get; } = ElementType.RentalAgreement;
   }
 
-  public sealed record EncryptedPassportRegistration : EncryptedDocument
+  public sealed class EncryptedPassportRegistration : EncryptedDocument
   {
     public override ElementType Type { get; } = ElementType.PassportRegistration;
   }
 
-  public sealed record EncryptedTemporaryRegistration : EncryptedDocument
+  public sealed class EncryptedTemporaryRegistration : EncryptedDocument
   {
     public override ElementType Type { get; } = ElementType.TemporaryRegistration;
   }
 
-  public sealed record EncryptedPhoneNumber : EncryptedElement
+  public sealed class EncryptedPhoneNumber : EncryptedElement
   {
     public override ElementType Type { get; } = ElementType.PhoneNumber;
 
-    public string PhoneNumber { get; init; } = null!;
+    public string PhoneNumber { get; set; } = null!;
   }
 
-  public sealed record EncryptedEmail : EncryptedElement
+  public sealed class EncryptedEmail : EncryptedElement
   {
     public override ElementType Type { get; } = ElementType.Email;
 
-    public string Email { get; init; } = null!;
+    public string Email { get; set; } = null!;
   }
 }

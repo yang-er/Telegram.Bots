@@ -6,22 +6,22 @@ using System.Collections.Generic;
 
 namespace Telegram.Bots.Types.Webhooks
 {
-  public sealed record WebhookInfo
+  public sealed class WebhookInfo
   {
-    public Uri? Url { get; init; }
+    public Uri? Url { get; set; }
 
-    public bool HasCustomCertificate { get; init; }
+    public bool HasCustomCertificate { get; set; }
 
-    public uint PendingUpdateCount { get; init; }
+    public uint PendingUpdateCount { get; set; }
 
-    public string? IpAddress { get; init; }
+    public string? IpAddress { get; set; }
 
-    public DateTime? LastErrorDate { get; init; }
+    public DateTime? LastErrorDate { get; set; }
 
-    public string? LastErrorMessage { get; init; }
+    public string? LastErrorMessage { get; set; }
 
-    public uint? MaxConnections { get; init; }
+    public uint? MaxConnections { get; set; }
 
-    public IReadOnlyList<UpdateType>? AllowedUpdates { get; init; }
+    public IReadOnlyList<UpdateType>? AllowedUpdates { get; set; }
   }
 }

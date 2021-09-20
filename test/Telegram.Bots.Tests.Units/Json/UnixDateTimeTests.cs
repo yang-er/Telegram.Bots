@@ -34,11 +34,11 @@ namespace Telegram.Bots.Tests.Units.Json
       Assert.Equal(Value.Date, value.Date);
     }
 
-    private sealed record UnixDateTimeData
+    private sealed class UnixDateTimeData
     {
-      public long UnixDate { get; init; }
+      public long UnixDate { get; set; }
 
-      public DateTime Date { get; init; }
+      public DateTime Date { get; set; }
     }
   }
 }

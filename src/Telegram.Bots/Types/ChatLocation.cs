@@ -3,10 +3,10 @@
 
 namespace Telegram.Bots.Types
 {
-  public sealed record ChatLocation
+  public sealed class ChatLocation
   {
-    public Location Location { get; init; } = null!;
+    public Location Location { get; set; } = null!;
 
-    public string Address { get; init; } = null!;
+    public string Address { get; set; } = null!;
   }
 }

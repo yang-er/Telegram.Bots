@@ -5,8 +5,8 @@ namespace Telegram.Bots.Requests
 {
   public interface IReplyable
   {
-    int? ReplyToMessageId { get; init; }
+    int? ReplyToMessageId { get; set; }
 
-    bool? AllowSendingWithoutReply { get; init; }
+    bool? AllowSendingWithoutReply { get; set; }
   }
 }

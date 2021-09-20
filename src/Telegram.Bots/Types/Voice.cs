@@ -3,10 +3,10 @@
 
 namespace Telegram.Bots.Types
 {
-  public sealed record Voice : File
+  public sealed class Voice : File
   {
-    public int Duration { get; init; }
+    public int Duration { get; set; }
 
-    public string? MimeType { get; init; }
+    public string? MimeType { get; set; }
   }
 }

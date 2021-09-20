@@ -3,12 +3,12 @@
 
 namespace Telegram.Bots.Types.Games
 {
-  public sealed record GameHighScore
+  public sealed class GameHighScore
   {
-    public int Position { get; init; }
+    public int Position { get; set; }
 
-    public User User { get; init; } = null!;
+    public User User { get; set; } = null!;
 
-    public int Score { get; init; }
+    public int Score { get; set; }
   }
 }

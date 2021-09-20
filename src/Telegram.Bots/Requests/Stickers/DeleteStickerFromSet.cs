@@ -3,7 +3,7 @@
 
 namespace Telegram.Bots.Requests.Stickers
 {
-  public sealed record DeleteStickerFromSet : IRequest<bool>
+  public sealed class DeleteStickerFromSet : IRequest<bool>
   {
     public string Sticker { get; }
 

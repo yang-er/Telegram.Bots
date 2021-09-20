@@ -6,24 +6,24 @@ using Telegram.Bots.Types;
 
 namespace Telegram.Bots.Requests
 {
-  public abstract record EditTextBase<TResult> : IRequest<TResult>, IInlineMarkupable
+  public abstract class EditTextBase<TResult> : IRequest<TResult>, IInlineMarkupable
   {
     public string Text { get; }
 
-    public ParseMode? ParseMode { get; init; }
+    public ParseMode? ParseMode { get; set; }
 
-    public IEnumerable<MessageEntity>? Entities { get; init; }
+    public IEnumerable<MessageEntity>? Entities { get; set; }
 
-    public bool? DisableWebPagePreview { get; init; }
+    public bool? DisableWebPagePreview { get; set; }
 
-    public InlineKeyboardMarkup? ReplyMarkup { get; init; }
+    public InlineKeyboardMarkup? ReplyMarkup { get; set; }
 
     public string Method { get; } = "editMessageText";
 
     protected EditTextBase(string text) => Text = text;
   }
 
-  public abstract record EditText<TChatId> : EditTextBase<TextMessage>,
+  public abstract class EditText<TChatId> : EditTextBase<TextMessage>,
     IChatMessageTargetable<TChatId>
   {
     public TChatId ChatId { get; }
@@ -37,14 +37,14 @@ namespace Telegram.Bots.Requests
     }
   }
 
-  public sealed record EditText : EditText<long>
+  public sealed class EditText : EditText<long>
   {
     public EditText(long chatId, int messageId, string text) : base(chatId, messageId, text) { }
   }
 
   namespace Usernames
   {
-    public sealed record EditText : EditText<string>
+    public sealed class EditText : EditText<string>
     {
       public EditText(string username, int messageId, string text) :
         base(username, messageId, text) { }
@@ -53,7 +53,7 @@ namespace Telegram.Bots.Requests
 
   namespace Inline
   {
-    public sealed record EditText : EditTextBase<bool>, IInlineMessageTargetable
+    public sealed class EditText : EditTextBase<bool>, IInlineMessageTargetable
     {
       public string MessageId { get; }
 

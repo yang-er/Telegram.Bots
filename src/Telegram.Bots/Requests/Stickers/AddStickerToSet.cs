@@ -8,7 +8,7 @@ using Telegram.Bots.Types.Stickers;
 
 namespace Telegram.Bots.Requests.Stickers
 {
-  public abstract record AddStickerToSetBase : IRequest<bool>, IUserTargetable
+  public abstract class AddStickerToSetBase : IRequest<bool>, IUserTargetable
   {
     public long UserId { get; }
 
@@ -16,7 +16,7 @@ namespace Telegram.Bots.Requests.Stickers
 
     public string Emojis { get; }
 
-    public MaskPosition? MaskPosition { get; init; }
+    public MaskPosition? MaskPosition { get; set; }
 
     public string Method { get; } = "addStickerToSet";
 
@@ -28,7 +28,7 @@ namespace Telegram.Bots.Requests.Stickers
     }
   }
 
-  public abstract record AddStickerToSet<TPngSticker> : AddStickerToSetBase
+  public abstract class AddStickerToSet<TPngSticker> : AddStickerToSetBase
   {
     public TPngSticker Sticker { get; }
 
@@ -36,19 +36,19 @@ namespace Telegram.Bots.Requests.Stickers
       base(userId, name, emojis) => Sticker = sticker;
   }
 
-  public sealed record AddStickerToSetViaCache : AddStickerToSet<string>
+  public sealed class AddStickerToSetViaCache : AddStickerToSet<string>
   {
     public AddStickerToSetViaCache(long userId, string name, string emojis, string sticker) :
       base(userId, name, emojis, sticker) { }
   }
 
-  public sealed record AddStickerToSetViaUrl : AddStickerToSet<Uri>
+  public sealed class AddStickerToSetViaUrl : AddStickerToSet<Uri>
   {
     public AddStickerToSetViaUrl(long userId, string name, string emojis, Uri sticker) :
       base(userId, name, emojis, sticker) { }
   }
 
-  public sealed record AddStickerToSetViaFile : AddStickerToSet<InputFile>, IUploadable
+  public sealed class AddStickerToSetViaFile : AddStickerToSet<InputFile>, IUploadable
   {
     public AddStickerToSetViaFile(long userId, string name, string emojis, InputFile sticker) :
       base(userId, name, emojis, sticker) { }
@@ -56,7 +56,7 @@ namespace Telegram.Bots.Requests.Stickers
     public IEnumerable<InputFile?> GetFiles() => new[] {Sticker};
   }
 
-  public abstract record AddAnimatedStickerToSet<TTgsSticker> : AddStickerToSetBase
+  public abstract class AddAnimatedStickerToSet<TTgsSticker> : AddStickerToSetBase
   {
     public TTgsSticker Sticker { get; }
 
@@ -68,7 +68,7 @@ namespace Telegram.Bots.Requests.Stickers
       base(userId, name, emojis) => Sticker = sticker;
   }
 
-  public sealed record AddAnimatedStickerToSetViaFile : AddAnimatedStickerToSet<InputFile>,
+  public sealed class AddAnimatedStickerToSetViaFile : AddAnimatedStickerToSet<InputFile>,
     IUploadable
   {
     public AddAnimatedStickerToSetViaFile(

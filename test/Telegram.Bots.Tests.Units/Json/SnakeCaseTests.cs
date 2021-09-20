@@ -43,13 +43,13 @@ namespace Telegram.Bots.Tests.Units.Json
       Assert.Equal(default, value.IsBot);
     }
 
-    private sealed record SnakeData
+    private sealed class SnakeData
     {
-      public int FileId { get; init; }
+      public int FileId { get; set; }
 
-      public string FirstName { get; init; } = null!;
+      public string FirstName { get; set; } = null!;
 
-      public bool IsBot { get; init; }
+      public bool IsBot { get; set; }
     }
   }
 }

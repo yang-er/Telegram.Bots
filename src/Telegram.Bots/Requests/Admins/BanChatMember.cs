@@ -5,15 +5,15 @@ using System;
 
 namespace Telegram.Bots.Requests.Admins
 {
-  public abstract record BanChatMember<TChatId> : IRequest<bool>, IChatMemberTargetable<TChatId>
+  public abstract class BanChatMember<TChatId> : IRequest<bool>, IChatMemberTargetable<TChatId>
   {
     public TChatId ChatId { get; }
 
     public long UserId { get; }
 
-    public DateTime? UntilDate { get; init; }
+    public DateTime? UntilDate { get; set; }
 
-    public bool? RevokeMessages { get; init; }
+    public bool? RevokeMessages { get; set; }
 
     public string Method { get; } = "banChatMember";
 
@@ -24,14 +24,14 @@ namespace Telegram.Bots.Requests.Admins
     }
   }
 
-  public sealed record BanChatMember : BanChatMember<long>
+  public sealed class BanChatMember : BanChatMember<long>
   {
     public BanChatMember(long chatId, long userId) : base(chatId, userId) { }
   }
 
   namespace Usernames
   {
-    public sealed record BanChatMember : BanChatMember<string>
+    public sealed class BanChatMember : BanChatMember<string>
     {
       public BanChatMember(string username, long userId) : base(username, userId) { }
     }

@@ -6,13 +6,13 @@ using Telegram.Bots.Types;
 
 namespace Telegram.Bots.Requests
 {
-  public sealed record SetMyCommands : IRequest<bool>
+  public sealed class SetMyCommands : IRequest<bool>
   {
     public IEnumerable<BotCommand> Commands { get; }
 
-    public BotCommandScope? Scope { get; init; }
+    public BotCommandScope? Scope { get; set; }
 
-    public string? LanguageCode { get; init; }
+    public string? LanguageCode { get; set; }
 
     public string Method { get; } = "setMyCommands";
 

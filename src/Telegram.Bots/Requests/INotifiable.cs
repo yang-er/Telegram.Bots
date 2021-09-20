@@ -5,6 +5,6 @@ namespace Telegram.Bots.Requests
 {
   public interface INotifiable
   {
-    bool? DisableNotification { get; init; }
+    bool? DisableNotification { get; set; }
   }
 }

@@ -6,7 +6,7 @@ using Telegram.Bots.Types.Passport;
 
 namespace Telegram.Bots.Requests.Passport
 {
-  public sealed record SetPassportDataErrors : IRequest<bool>, IUserTargetable
+  public sealed class SetPassportDataErrors : IRequest<bool>, IUserTargetable
   {
     public long UserId { get; }
 

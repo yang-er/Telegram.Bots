@@ -6,34 +6,34 @@ using System.Collections.Generic;
 
 namespace Telegram.Bots.Types
 {
-  public abstract record AnimationMedia<TMedia> : InputMedia<TMedia>
+  public abstract class AnimationMedia<TMedia> : InputMedia<TMedia>
   {
     public override InputMediaType Type { get; } = InputMediaType.Animation;
 
     protected AnimationMedia(TMedia media) : base(media) { }
   }
 
-  public sealed record CachedAnimation : AnimationMedia<string>
+  public sealed class CachedAnimation : AnimationMedia<string>
   {
     public CachedAnimation(string fileId) : base(fileId) { }
   }
 
-  public sealed record AnimationUrl : AnimationMedia<Uri>
+  public sealed class AnimationUrl : AnimationMedia<Uri>
   {
     public AnimationUrl(Uri url) : base(url) { }
   }
 
-  public sealed record AnimationFile : AnimationMedia<InputFile>, IUploadableMedia
+  public sealed class AnimationFile : AnimationMedia<InputFile>, IUploadableMedia
   {
-    public int? Duration { get; init; }
+    public int? Duration { get; set; }
 
-    public int? Width { get; init; }
+    public int? Width { get; set; }
 
-    public int? Height { get; init; }
+    public int? Height { get; set; }
 
-    public InputFile? Thumb { get; init; }
+    public InputFile? Thumb { get; set; }
 
-    public bool? DisableContentTypeDetection { get; init; }
+    public bool? DisableContentTypeDetection { get; set; }
 
     public AnimationFile(InputFile file) : base(file) { }
 

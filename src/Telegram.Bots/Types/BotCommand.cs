@@ -3,10 +3,10 @@
 
 namespace Telegram.Bots.Types
 {
-  public sealed record BotCommand
+  public sealed class BotCommand
   {
-    public string Command { get; init; } = null!;
+    public string Command { get; set; } = null!;
 
-    public string Description { get; init; } = null!;
+    public string Description { get; set; } = null!;
   }
 }

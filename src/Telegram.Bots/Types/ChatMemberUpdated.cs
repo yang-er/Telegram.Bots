@@ -5,18 +5,18 @@ using System;
 
 namespace Telegram.Bots.Types
 {
-  public sealed record ChatMemberUpdated
+  public sealed class ChatMemberUpdated
   {
-    public Chat Chat { get; init; } = null!;
+    public Chat Chat { get; set; } = null!;
 
-    public User From { get; init; } = null!;
+    public User From { get; set; } = null!;
 
-    public DateTime Date { get; init; } = DateTime.UnixEpoch;
+    public DateTime Date { get; set; } = DateTime.UnixEpoch;
 
-    public ChatMember OldChatMember { get; init; } = null!;
+    public ChatMember OldChatMember { get; set; } = null!;
 
-    public ChatMember NewChatMember { get; init; } = null!;
+    public ChatMember NewChatMember { get; set; } = null!;
 
-    public ChatInviteLink? InviteLink { get; init; }
+    public ChatInviteLink? InviteLink { get; set; }
   }
 }

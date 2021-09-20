@@ -5,7 +5,7 @@ using Telegram.Bots.Types;
 
 namespace Telegram.Bots.Requests
 {
-  public abstract record ForwardMessage<TChatId, TFromChatId> : IRequest<Message>,
+  public abstract class ForwardMessage<TChatId, TFromChatId> : IRequest<Message>,
     IChatMessageTargetable<TChatId>, INotifiable
   {
     public TChatId ChatId { get; }
@@ -14,7 +14,7 @@ namespace Telegram.Bots.Requests
 
     public int MessageId { get; }
 
-    public bool? DisableNotification { get; init; }
+    public bool? DisableNotification { get; set; }
 
     public string Method { get; } = "forwardMessage";
 
@@ -26,13 +26,13 @@ namespace Telegram.Bots.Requests
     }
   }
 
-  public sealed record ForwardMessage : ForwardMessage<long, long>
+  public sealed class ForwardMessage : ForwardMessage<long, long>
   {
     public ForwardMessage(long chatId, long fromChatId, int messageId) :
       base(chatId, fromChatId, messageId) { }
   }
 
-  public sealed record ForwardMessageViaUsername : ForwardMessage<string, long>
+  public sealed class ForwardMessageViaUsername : ForwardMessage<string, long>
   {
     public ForwardMessageViaUsername(string username, long fromChatId, int messageId) :
       base(username, fromChatId, messageId) { }
@@ -40,13 +40,13 @@ namespace Telegram.Bots.Requests
 
   namespace Usernames
   {
-    public sealed record ForwardMessage : ForwardMessage<string, string>
+    public sealed class ForwardMessage : ForwardMessage<string, string>
     {
       public ForwardMessage(string username, string fromUsername, int messageId) :
         base(username, fromUsername, messageId) { }
     }
 
-    public sealed record ForwardMessageViaId : ForwardMessage<long, string>
+    public sealed class ForwardMessageViaId : ForwardMessage<long, string>
     {
       public ForwardMessageViaId(long chatId, string fromUsername, int messageId) :
         base(chatId, fromUsername, messageId) { }

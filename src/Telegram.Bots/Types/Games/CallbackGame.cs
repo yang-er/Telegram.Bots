@@ -3,7 +3,7 @@
 
 namespace Telegram.Bots.Types.Games
 {
-  public sealed record CallbackGame
+  public sealed class CallbackGame
   {
     public static readonly CallbackGame Default = new();
   }

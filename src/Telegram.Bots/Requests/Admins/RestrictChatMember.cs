@@ -6,7 +6,7 @@ using Telegram.Bots.Types;
 
 namespace Telegram.Bots.Requests.Admins
 {
-  public abstract record RestrictChatMember<TChatId> : IRequest<bool>,
+  public abstract class RestrictChatMember<TChatId> : IRequest<bool>,
     IChatMemberTargetable<TChatId>
   {
     public TChatId ChatId { get; }
@@ -15,7 +15,7 @@ namespace Telegram.Bots.Requests.Admins
 
     public ChatPermissions Permissions { get; }
 
-    public DateTime? UntilDate { get; init; }
+    public DateTime? UntilDate { get; set; }
 
     public string Method { get; } = "restrictChatMember";
 
@@ -27,7 +27,7 @@ namespace Telegram.Bots.Requests.Admins
     }
   }
 
-  public sealed record RestrictChatMember : RestrictChatMember<long>
+  public sealed class RestrictChatMember : RestrictChatMember<long>
   {
     public RestrictChatMember(long chatId, long userId, ChatPermissions permissions) :
       base(chatId, userId, permissions) { }
@@ -35,7 +35,7 @@ namespace Telegram.Bots.Requests.Admins
 
   namespace Usernames
   {
-    public sealed record RestrictChatMember : RestrictChatMember<string>
+    public sealed class RestrictChatMember : RestrictChatMember<string>
     {
       public RestrictChatMember(string username, long userId, ChatPermissions permissions) :
         base(username, userId, permissions) { }

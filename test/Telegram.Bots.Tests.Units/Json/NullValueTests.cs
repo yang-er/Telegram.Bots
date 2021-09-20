@@ -36,13 +36,13 @@ namespace Telegram.Bots.Tests.Units.Json
       Assert.Null(value.IsBot);
     }
 
-    private sealed record NullData
+    private sealed class NullData
     {
-      public int? FileId { get; init; }
+      public int? FileId { get; set; }
 
-      public string? FirstName { get; init; }
+      public string? FirstName { get; set; }
 
-      public bool? IsBot { get; init; }
+      public bool? IsBot { get; set; }
     }
   }
 }

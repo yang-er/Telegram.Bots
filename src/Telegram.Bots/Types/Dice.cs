@@ -3,10 +3,10 @@
 
 namespace Telegram.Bots.Types
 {
-  public sealed record Dice
+  public sealed class Dice
   {
-    public Emoji Emoji { get; init; }
+    public Emoji Emoji { get; set; }
 
-    public uint Value { get; init; }
+    public uint Value { get; set; }
   }
 }

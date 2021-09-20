@@ -3,18 +3,18 @@
 
 namespace Telegram.Bots.Types
 {
-  public sealed record Audio : File
+  public sealed class Audio : File
   {
-    public int Duration { get; init; }
+    public int Duration { get; set; }
 
-    public string? Performer { get; init; }
+    public string? Performer { get; set; }
 
-    public string? Title { get; init; }
+    public string? Title { get; set; }
 
-    public string? Name { get; init; }
+    public string? Name { get; set; }
 
-    public string? MimeType { get; init; }
+    public string? MimeType { get; set; }
 
-    public Photo? Thumb { get; init; }
+    public Photo? Thumb { get; set; }
   }
 }

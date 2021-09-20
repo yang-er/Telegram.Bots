@@ -1,8 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
-    <LangVersion>default</LangVersion>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <LangVersion>9.0</LangVersion>
     <Nullable>enable</Nullable>
     <Authors>Aman Agnihotri</Authors>
     <Product>Telegram.Bots.Extensions.Polling</Product>
@@ -29,12 +29,15 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Telegram.Bots" Version="5.1.0"/>
-    <PackageReference Include="Microsoft.Extensions.Hosting" Version="5.0.0"/>
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="3.1.19"/>
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Telegram.Bots\Telegram.Bots.csproj" />
   </ItemGroup>
 
 </Project>

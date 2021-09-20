@@ -3,7 +3,7 @@
 
 namespace Telegram.Bots.Types
 {
-  public abstract record Button
+  public abstract class Button
   {
     public string Text { get; }
 
@@ -14,7 +14,7 @@ namespace Telegram.Bots.Types
     public static Button ToButton(string text) => new TextButton(text);
   }
 
-  public sealed record TextButton : Button
+  public sealed class TextButton : Button
   {
     public TextButton(string text) : base(text) { }
 
@@ -23,35 +23,35 @@ namespace Telegram.Bots.Types
     public static TextButton ToTextButton(string text) => new(text);
   }
 
-  public sealed record RequestContactButton : Button
+  public sealed class RequestContactButton : Button
   {
     public bool RequestContact { get; } = true;
 
     public RequestContactButton(string text) : base(text) { }
   }
 
-  public sealed record RequestLocationButton : Button
+  public sealed class RequestLocationButton : Button
   {
     public bool RequestLocation { get; } = true;
 
     public RequestLocationButton(string text) : base(text) { }
   }
 
-  public sealed record RequestPollButton : Button
+  public sealed class RequestPollButton : Button
   {
     public ButtonPollType RequestPoll { get; } = ButtonPollType.AnyPoll;
 
     public RequestPollButton(string text) : base(text) { }
   }
 
-  public sealed record RequestRegularPollButton : Button
+  public sealed class RequestRegularPollButton : Button
   {
     public ButtonPollType? RequestPoll { get; } = new ButtonPollType(PollType.Regular);
 
     public RequestRegularPollButton(string text) : base(text) { }
   }
 
-  public sealed record RequestQuizPollButton : Button
+  public sealed class RequestQuizPollButton : Button
   {
     public ButtonPollType? RequestPoll { get; } = new ButtonPollType(PollType.Quiz);
 

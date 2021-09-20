@@ -3,10 +3,10 @@
 
 namespace Telegram.Bots.Types
 {
-  public sealed record PollOption
+  public sealed class PollOption
   {
-    public string Text { get; init; } = null!;
+    public string Text { get; set; } = null!;
 
-    public uint VoterCount { get; init; }
+    public uint VoterCount { get; set; }
   }
 }

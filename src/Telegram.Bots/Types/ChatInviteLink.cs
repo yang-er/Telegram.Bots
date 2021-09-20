@@ -5,18 +5,18 @@ using System;
 
 namespace Telegram.Bots.Types
 {
-  public sealed record ChatInviteLink
+  public sealed class ChatInviteLink
   {
-    public string InviteLink { get; init; } = null!;
+    public string InviteLink { get; set; } = null!;
 
-    public User Creator { get; init; } = null!;
+    public User Creator { get; set; } = null!;
 
-    public bool IsPrimary { get; init; }
+    public bool IsPrimary { get; set; }
 
-    public bool IsRevoked { get; init; }
+    public bool IsRevoked { get; set; }
 
-    public DateTime? ExpireDate { get; init; }
+    public DateTime? ExpireDate { get; set; }
 
-    public int? MemberLimit { get; init; }
+    public int? MemberLimit { get; set; }
   }
 }

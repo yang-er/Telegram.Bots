@@ -1,4 +1,6 @@
 namespace Telegram.Bots.Types
 {
-  public sealed record VoiceChatStarted;
+  public sealed class VoiceChatStarted
+  {
+  }
 }

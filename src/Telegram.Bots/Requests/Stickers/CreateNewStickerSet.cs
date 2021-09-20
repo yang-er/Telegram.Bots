@@ -8,7 +8,7 @@ using Telegram.Bots.Types.Stickers;
 
 namespace Telegram.Bots.Requests.Stickers
 {
-  public abstract record CreateNewStickerSetBase : IRequest<bool>, IUserTargetable
+  public abstract class CreateNewStickerSetBase : IRequest<bool>, IUserTargetable
   {
     public long UserId { get; }
 
@@ -18,9 +18,9 @@ namespace Telegram.Bots.Requests.Stickers
 
     public string Emojis { get; }
 
-    public bool? ContainsMasks { get; init; }
+    public bool? ContainsMasks { get; set; }
 
-    public MaskPosition? MaskPosition { get; init; }
+    public MaskPosition? MaskPosition { get; set; }
 
     public string Method { get; } = "createNewStickerSet";
 
@@ -33,7 +33,7 @@ namespace Telegram.Bots.Requests.Stickers
     }
   }
 
-  public abstract record CreateNewStickerSet<TPngSticker> : CreateNewStickerSetBase
+  public abstract class CreateNewStickerSet<TPngSticker> : CreateNewStickerSetBase
   {
     public TPngSticker Sticker { get; }
 
@@ -45,7 +45,7 @@ namespace Telegram.Bots.Requests.Stickers
       TPngSticker sticker) : base(userId, name, title, emojis) => Sticker = sticker;
   }
 
-  public sealed record CreateNewStickerSetViaCache : CreateNewStickerSet<string>
+  public sealed class CreateNewStickerSetViaCache : CreateNewStickerSet<string>
   {
     public CreateNewStickerSetViaCache(
       long userId,
@@ -55,7 +55,7 @@ namespace Telegram.Bots.Requests.Stickers
       string sticker) : base(userId, name, title, emojis, sticker) { }
   }
 
-  public sealed record CreateNewStickerSetViaUrl : CreateNewStickerSet<Uri>
+  public sealed class CreateNewStickerSetViaUrl : CreateNewStickerSet<Uri>
   {
     public CreateNewStickerSetViaUrl(
       long userId,
@@ -65,7 +65,7 @@ namespace Telegram.Bots.Requests.Stickers
       Uri sticker) : base(userId, name, title, emojis, sticker) { }
   }
 
-  public sealed record CreateNewStickerSetViaFile : CreateNewStickerSet<InputFile>, IUploadable
+  public sealed class CreateNewStickerSetViaFile : CreateNewStickerSet<InputFile>, IUploadable
   {
     public CreateNewStickerSetViaFile(
       long userId,
@@ -77,7 +77,7 @@ namespace Telegram.Bots.Requests.Stickers
     public IEnumerable<InputFile?> GetFiles() => new[] {Sticker};
   }
 
-  public abstract record CreateNewAnimatedStickerSet<TTgsSticker> : CreateNewStickerSetBase
+  public abstract class CreateNewAnimatedStickerSet<TTgsSticker> : CreateNewStickerSetBase
   {
     public TTgsSticker Sticker { get; }
 
@@ -89,7 +89,7 @@ namespace Telegram.Bots.Requests.Stickers
       TTgsSticker sticker) : base(userId, name, title, emojis) => Sticker = sticker;
   }
 
-  public sealed record CreateNewAnimatedStickerSetViaFile : CreateNewAnimatedStickerSet<InputFile>,
+  public sealed class CreateNewAnimatedStickerSetViaFile : CreateNewAnimatedStickerSet<InputFile>,
     IUploadable
   {
     public CreateNewAnimatedStickerSetViaFile(

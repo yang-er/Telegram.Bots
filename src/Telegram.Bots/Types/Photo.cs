@@ -3,10 +3,10 @@
 
 namespace Telegram.Bots.Types
 {
-  public sealed record Photo : File
+  public sealed class Photo : File
   {
-    public int Width { get; init; }
+    public int Width { get; set; }
 
-    public int Height { get; init; }
+    public int Height { get; set; }
   }
 }
